@@ -22,7 +22,7 @@ de coordenação distribuída.
 
 \begin{figure}[H]
   \centering
-  \caption{Arquitetura em camadas da solução}
+  \caption{Arquitetura em camadas da solução (a seta à direita representa a inversão de dependência)}
   \label{fig:camadas}
   \begin{tikzpicture}[
     camada/.style={draw, rounded corners=3pt, minimum width=130mm, minimum height=13mm,
@@ -35,8 +35,7 @@ de coordenação distribuída.
     \node[camada, fill=gray!10, below=3mm of dom] (infra) {\textbf{Infraestrutura} --- EF Core, SQL Server, JWT, arquivos, seed};
     \draw[seta] (apres) -- (aplic);
     \draw[seta] (aplic) -- (dom);
-    \draw[seta] (infra.east) to[bend left=45] (dom.east);
-    \draw[seta] (aplic.west) to[bend right=40] node[left, font=\fontsize{8}{9}\selectfont, align=center] {inversão de\\ dependência} (infra.west);
+    \draw[seta] (infra.east) -- ++(1.4,0) |- (dom.east);
   \end{tikzpicture}
   \fonte{elaborado pelo autor (2026)}
 \end{figure}
