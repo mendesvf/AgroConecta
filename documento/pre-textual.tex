@@ -1,0 +1,140 @@
+% ============================================================================
+% Elementos pré-textuais: capa, folha de rosto, resumo, abstract e sumário
+% ============================================================================
+
+% ------------------------------------------------------------------- CAPA ----
+\begin{titlepage}
+  \begin{center}
+    \fontsize{12}{18}\selectfont
+    \textbf{UNIVERSIDADE PAULISTA -- UNIP}\\[0.2\baselineskip]
+    Projeto Integrado Multidisciplinar\\[0.2\baselineskip]
+    Curso Superior de Tecnologia em\\ Análise e Desenvolvimento de Sistemas
+
+    \vspace{2.2cm}
+
+    \textbf{[NOME DO ALUNO] -- [RA]}\\[0.25\baselineskip]
+    \textbf{[NOME DO ALUNO] -- [RA]}
+
+    \vspace{2.4cm}
+
+    {\fontsize{14}{21}\selectfont\bfseries
+      AGROCONECTA: PLATAFORMA CORPORATIVA INTEGRADA PARA GESTÃO DA CADEIA
+      DE SUPRIMENTOS E INCLUSÃO DIGITAL NA AGRICULTURA FAMILIAR\par}
+
+    \vfill
+
+    São Paulo -- SP\\
+    2026
+  \end{center}
+\end{titlepage}
+
+% --------------------------------------------------------- FOLHA DE ROSTO ---
+\begin{titlepage}
+  \begin{center}
+    \fontsize{12}{18}\selectfont
+    \textbf{[NOME DO ALUNO] -- [RA]}\\[0.25\baselineskip]
+    \textbf{[NOME DO ALUNO] -- [RA]}
+
+    \vspace{2.6cm}
+
+    {\fontsize{14}{21}\selectfont\bfseries
+      AGROCONECTA: PLATAFORMA CORPORATIVA INTEGRADA PARA GESTÃO DA CADEIA
+      DE SUPRIMENTOS E INCLUSÃO DIGITAL NA AGRICULTURA FAMILIAR\par}
+
+    \vspace{2.5cm}
+  \end{center}
+
+  \noindent\hspace*{5.5cm}%
+  \begin{minipage}{9.5cm}
+    \raggedright
+    \fontsize{11}{16}\selectfont
+    Projeto Integrado Multidisciplinar apresentado à Universidade Paulista --
+    UNIP, como requisito parcial para a obtenção do título de tecnólogo em
+    Análise e Desenvolvimento de Sistemas.
+
+    \vspace{0.6\baselineskip}
+    Orientador(a): [NOME DO ORIENTADOR]
+  \end{minipage}
+
+  \vfill
+  \begin{center}
+    \fontsize{12}{18}\selectfont
+    São Paulo -- SP\\
+    2026
+  \end{center}
+\end{titlepage}
+
+% ----------------------------------------------------------------- RESUMO ----
+\setcounter{page}{3}
+\pagestyle{vazio}
+\begingroup
+\setstretch{1}
+\titulopretextual{RESUMO}
+
+A transformação digital de cadeias produtivas agroalimentares exige soluções que
+conectem planejamento de negócio, aplicações corporativas, banco de dados,
+infraestrutura e gestão ágil em um único ecossistema. Este trabalho apresenta o
+AgroConecta, plataforma corporativa integrada para a gestão da cadeia de
+suprimentos e a inclusão digital da agricultura familiar. O problema identificado
+é a assimetria de informação entre cooperativas, produtores familiares,
+compradores institucionais e transportadores, que provoca perdas de produção,
+fragilidade na rastreabilidade e baixa capacidade de escoamento. A metodologia
+adotou pesquisa aplicada de natureza qualitativa, apoiada em levantamento
+documental, modelagem de negócio e desenvolvimento incremental com práticas ágeis
+(Scrum e Kanban). A solução foi construída sobre uma arquitetura em camadas com
+.NET 10 e ASP.NET Core, oferecendo aplicação Web com autenticação por cookie e
+API REST protegida por JWT, além de um aplicativo mobile em React Native e Expo
+com operação offline. O banco de dados relacional em SQL Server 2022 contempla
+quatorze tabelas de negócio, três procedimentos armazenados e três gatilhos de
+auditoria e movimentação de estoque, validados por scripts completos. Os
+resultados incluem um fluxo ponta a ponta de produto, lote, pedido, rota, entrega
+com evidência fotográfica e geolocalização, e faturamento, com 159 testes
+automatizados aprovados e cobertura superior a 90\% nas camadas de domínio e
+aplicação. Conclui-se que a plataforma atende aos requisitos técnicos e
+organizacionais do projeto, amplia a transparência da cadeia e cria condições
+concretas de inclusão produtiva para agricultores familiares.
+
+\vspace{0.5\baselineskip}
+\noindent\textbf{Palavras-chave:} Agricultura familiar. Transformação digital.
+Plataforma corporativa. Desenvolvimento Web. Aplicativo mobile. Banco de dados.
+\endgroup
+
+% ---------------------------------------------------------------- ABSTRACT ---
+\newpage
+\begingroup
+\setstretch{1}
+\titulopretextual{ABSTRACT}
+
+The digital transformation of agrifood supply chains requires solutions that
+connect business planning, corporate applications, databases, infrastructure and
+agile management in a single ecosystem. This paper presents AgroConecta, an
+integrated corporate platform for supply chain management and digital inclusion
+of family farming. The identified problem is the information asymmetry among
+cooperatives, family producers, institutional buyers and transporters, which
+causes production losses, weak traceability and low market access. The
+methodology adopted applied qualitative research supported by document analysis,
+business modeling and incremental development with agile practices (Scrum and
+Kanban). The solution was built on a layered architecture with .NET 10 and
+ASP.NET Core, providing a Web application with cookie authentication and a REST
+API protected by JWT, as well as a React Native and Expo mobile application with
+offline operation. The relational database on SQL Server 2022 comprises fourteen
+business tables, three stored procedures and three triggers for auditing and
+inventory movement, validated by complete scripts. The results include an
+end-to-end flow of product, harvest lot, order, route, delivery with photographic
+and geolocation evidence, and invoicing, with 159 automated tests passing and
+coverage above 90\% in the domain and application layers. It is concluded that
+the platform meets the technical and organizational requirements of the project,
+increases supply chain transparency and creates concrete conditions for
+productive inclusion of family farmers.
+
+\vspace{0.5\baselineskip}
+\noindent\textbf{Keywords:} Family farming. Digital transformation. Corporate
+platform. Web development. Mobile application. Database.
+\endgroup
+
+% ---------------------------------------------------------------- SUMÁRIO ----
+\newpage
+\begingroup
+\setstretch{1}
+\tableofcontents
+\endgroup

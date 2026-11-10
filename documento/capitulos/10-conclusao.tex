@@ -1,0 +1,75 @@
+% ============================================================================
+% Conclusão
+% ============================================================================
+\section*{CONCLUSÃO}
+\addcontentsline{toc}{section}{CONCLUSÃO}
+
+Este trabalho teve como objetivo desenvolver uma solução tecnológica corporativa
+integrada para apoiar a transformação digital de uma cooperativa de agricultura
+familiar. A proposta partiu de um diagnóstico concreto -- informação dispersa,
+rastreabilidade frágil, comprovação de entrega precária e baixa visibilidade
+gerencial -- e resultou em uma plataforma que conecta produtores, compradores,
+motoristas e gestores em um único fluxo digital.
+
+O objetivo geral foi alcançado. A plataforma AgroConecta reúne aplicação Web
+administrativa, API REST versionada, aplicativo mobile com operação offline e
+banco de dados relacional com procedimentos armazenados e gatilhos. O fluxo
+completo foi validado ponta a ponta, em ambiente real: cadastro de produto,
+registro de lote com código de rastreio, criação de pedido com itens vinculados
+ao lote, programação de rota com geração automática de entrega, atualização de
+status pelo motorista, envio de evidência com fotografia e coordenadas, e
+emissão de fatura com numeração sequencial e comportamento idempotente.
+
+Os objetivos específicos também foram atendidos. A organização foi caracterizada
+com processos, problemas e análise SWOT; a solução foi planejada com personas,
+proposta de valor, Lean Canvas e estimativa de viabilidade; as dimensões de
+responsabilidade social, diversidade, acessibilidade e proteção de dados foram
+incorporadas ao produto, e não apenas ao discurso; a aplicação Web cobre treze
+telas com controle de acesso por papel; o aplicativo mobile implementa dez telas
+com fila de sincronização persistente e tratamento explícito de conflitos; a
+arquitetura em camadas mantém as regras de negócio isoladas de detalhes
+tecnológicos; o banco de dados foi modelado em terceira forma normal, com
+restrições de integridade, três procedimentos e três gatilhos; a infraestrutura
+foi planejada para nuvem, com contêineres, pipeline de integração e entrega
+contínuas; e o trabalho foi conduzido com Product Backlog, quatro sprints, quadro
+Kanban e critérios de pronto e concluído.
+
+Os resultados quantitativos reforçam a consistência da entrega: 159 testes
+automatizados aprovados no backend, com cobertura de 92,5\% no domínio e 93,8\%
+na aplicação; 17 suítes e 79 testes no aplicativo mobile; contrato OpenAPI com 22
+caminhos; e banco validado em contêiner SQL Server 2022, tanto pelo script
+completo quanto pelas migrations. A execução do fluxo real produziu uma fatura
+de demonstração e confirmou a persistência de todos os registros.
+
+Do ponto de vista social, a contribuição mais relevante não está na tecnologia em
+si, mas na possibilidade de tornar visível a produção de comunidades
+tradicionais. Ao registrar a origem do lote, a comunidade do produtor e a
+evidência de entrega, a plataforma cria informação que pode ser usada para
+acessar políticas públicas, comprovar contrapartidas e reduzir a assimetria de
+poder na negociação. A operação offline é parte dessa escolha: sem ela, a
+ferramenta excluiria justamente quem mais precisa de apoio.
+
+O trabalho apresenta limitações que devem ser reconhecidas. O APK validado
+contempla apenas a arquitetura \texttt{arm64-v8a}; a verificação com leitor de
+tela foi parcial; a distribuição em nuvem pelo EAS não foi executada; e o build
+da imagem Docker da aplicação não pôde ser concluído no ambiente de
+desenvolvimento por restrição de espaço em disco, embora o arquivo esteja
+versionado e o pipeline o execute. Tais limitações não invalidam os resultados
+funcionais, mas delimitam o alcance da validação.
+
+Como trabalhos futuros, sugere-se: integrar a plataforma a serviços de emissão
+de nota fiscal eletrônica; implementar assinatura digital da evidência de
+entrega; ampliar o aplicativo para outras arquiteturas e para iOS; incluir
+módulo de previsão de demanda a partir do histórico de pedidos; e conduzir um
+piloto com produtores reais, medindo tempo de registro, redução de perdas e
+satisfação de uso. Essas evoluções preservam a arquitetura atual e aprofundam o
+impacto social pretendido.
+
+Conclui-se que o AgroConecta demonstra a aplicação prática e integrada dos
+conteúdos do quarto semestre: empreendedorismo, desenvolvimento Web e mobile,
+arquitetura de software, programação orientada a objetos, banco de dados,
+computação em nuvem, DevOps, gestão ágil e responsabilidade social. Mais do que
+um conjunto de artefatos técnicos, o projeto evidencia que a transformação
+digital de uma organização depende da articulação entre tecnologia, processo e
+pessoas -- e que essa articulação é possível mesmo em contextos de recursos
+limitados.

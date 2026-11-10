@@ -1,0 +1,162 @@
+% ============================================================================
+% Capítulo 1 — Caracterização da organização
+% ============================================================================
+\section{CARACTERIZAÇÃO DA ORGANIZAÇÃO}
+
+\subsection{Segmento de atuação e perfil institucional}
+
+A Cooperativa Agropecuária Vale Verde atua no segmento de comercialização de
+produtos da agricultura familiar. Fundada em 2011 por um grupo de dezessete
+famílias produtoras, a organização surgiu para viabilizar a venda conjunta da
+produção e reduzir a dependência de intermediários. Atualmente, reúne 52
+produtores associados distribuídos em quatro comunidades -- tradicional,
+quilombola, assentamento e indígena -- em municípios da região metropolitana de
+Campinas, no interior paulista.
+
+O portfólio é organizado em três linhas: hortifrúti (tomate, alface, cenoura,
+abobrinha e temperos verdes), grãos (feijão e milho) e produtos beneficiados
+(polpas de fruta e farinha de mandioca). A produção é pulverizada em pequenas
+propriedades, com média de 3,4 hectares por família, e a colheita ocorre em ciclos
+curtos, o que exige coordenação diária entre oferta, demanda e logística.
+
+A receita da cooperativa provém de três canais: compras públicas (PNAE e PAA),
+fornecimento para restaurantes universitários e venda para redes varejistas
+regionais. Os dois primeiros canais exigem comprovação documental rigorosa da
+entrega e rastreabilidade do lote; o terceiro concentra a maior parte do
+faturamento, porém impõe prazos de pagamento mais longos e maior pressão por
+preço.
+
+\subsection{Estrutura organizacional}
+
+A governança segue o modelo cooperativista clássico, com assembleia geral como
+instância máxima de deliberação. A diretoria eleita é composta por presidente,
+vice-presidente e tesoureiro, apoiados por um conselho fiscal. A operação é
+conduzida por uma equipe administrativa de quatro pessoas, um técnico agrícola
+responsável pela assistência e pelo acompanhamento da qualidade, e três
+motoristas que realizam as rotas de coleta e entrega em dois veículos próprios.
+
+A Figura~\ref{fig:org} representa essa estrutura de forma simplificada. Observa-se
+que a mesma equipe administrativa acumula funções de cadastro, atendimento,
+faturamento e prestação de contas, o que explica parte dos gargalos
+identificados na seção seguinte.
+
+\begin{figure}[H]
+  \centering
+  \caption{Organograma simplificado da Cooperativa Vale Verde}
+  \label{fig:org}
+  \begin{tikzpicture}[
+    node distance=8mm and 10mm,
+    caixa/.style={draw, rounded corners=2pt, align=center, font=\fontsize{9}{11}\selectfont,
+      minimum height=9mm, minimum width=30mm, inner sep=3pt},
+    seta/.style={-latex, thin}
+  ]
+    \node[caixa, minimum width=44mm] (ag) {Assembleia geral};
+    \node[caixa, below=of ag] (dir) {Diretoria\\ (presidente, vice, tesoureiro)};
+    \node[caixa, below=of dir] (adm) {Equipe administrativa\\ (4 pessoas)};
+    \node[caixa, below=of adm, text width=26mm] (prod) {Produtores\\ associados (52)};
+    \node[caixa, right=of adm, text width=28mm] (tec) {Técnico agrícola\\ (1)};
+    \node[caixa, left=of adm, text width=28mm] (log) {Logística\\ (3 motoristas)};
+    \node[caixa, below=of adm, text width=30mm, yshift=-8mm] (fisc) {Conselho fiscal};
+    \draw[seta] (ag) -- (dir);
+    \draw[seta] (dir) -- (adm);
+    \draw[seta] (dir.south west) -- (fisc.north);
+    \draw[seta] (adm) -- (prod);
+    \draw[seta] (adm) -- (tec);
+    \draw[seta] (adm) -- (log);
+    \draw[seta] (prod.east) to[bend left=18] (log.south);
+  \end{tikzpicture}
+  \fonte{elaborado pelo autor (2026)}
+\end{figure}
+
+\subsection{Principais processos}
+
+O ciclo operacional da cooperativa pode ser descrito em oito processos de
+negócio, apresentados na Tabela~\ref{tab:processos} com os problemas observados e
+as oportunidades de melhoria por meio de tecnologia.
+
+\begin{table}[H]
+  \centering
+  \caption{Processos de negócio, problemas e oportunidades}
+  \label{tab:processos}
+  \fontsize{10}{12}\selectfont
+  \begin{tabular}{L{3.2cm}L{5.4cm}L{5.6cm}}
+    \toprule
+    \textbf{Processo} & \textbf{Problema atual} & \textbf{Oportunidade} \\
+    \midrule
+    Cadastro de produtor & Fichas em papel, dados incompletos e sem
+      histórico de aprovação & Cadastro digital com aprovação e trilha de
+      auditoria \\
+    Planejamento da colheita & Comunicação por telefone e mensagens; oferta
+      desconhecida & Registro de lote com quantidade e data de colheita \\
+    Recebimento de pedidos & Pedidos em canais distintos, sem padrão de itens e
+      preços & Pedido digital com itens, lote e endereço de entrega \\
+    Separação e conferência & Conferência manual, sujeita a divergências &
+      Itens vinculados ao lote e ao pedido, com total calculado \\
+    Programação de rotas & Planilha sem vínculo com pedidos e veículos &
+      Rota com data, motorista, veículo e entregas geradas \\
+    Entrega e comprovação & Foto enviada por aplicativo de mensagens, sem
+      vínculo com o pedido & Evidência com foto, GPS e observação no próprio
+      registro \\
+    Faturamento e repasse & Emissão manual, com atrasos e erros de valor &
+      Fatura gerada a partir do pedido, com numeração sequencial \\
+    Prestação de contas & Consolidação manual de planilhas & Relatórios e
+      indicadores consolidados \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{2pt}
+  {\fontsize{10}{12}\selectfont\itshape Fonte: elaborado pelo autor (2026)}
+\end{table}
+
+\subsection{Problemas identificados}
+
+A análise dos processos revelou quatro problemas estruturais. O primeiro é a
+\textbf{descontinuidade da informação}: cada etapa usa um suporte diferente
+(caderno, planilha, mensagem, nota fiscal), sem chave comum que permita
+reconstruir o caminho entre a colheita e o consumo. O segundo é a
+\textbf{baixa confiabilidade do estoque}: sem registro tempestivo de entradas e
+saídas, a quantidade disponível de um lote diverge do que existe fisicamente,
+provocando promessas de venda que não podem ser cumpridas.
+
+O terceiro problema é a \textbf{fragilidade da comprovação de entrega}. A
+fotografia enviada por aplicativo de mensagens não contém identificação do
+pedido, coordenadas ou assinatura do recebedor, o que dificulta a resolução de
+contestações e a prestação de contas em programas públicos. O quarto é a
+\textbf{baixa visibilidade gerencial}: a diretoria não dispõe de indicadores
+consolidados de vendas por produtor, perdas por lote ou desempenho logístico, e
+decide com base em percepção e não em dados.
+
+\subsection{Análise SWOT}
+
+A Tabela~\ref{tab:swot} sintetiza o diagnóstico estratégico da organização,
+considerando fatores internos e externos que condicionam a adoção da solução
+tecnológica.
+
+\begin{table}[H]
+  \centering
+  \caption{Matriz SWOT da Cooperativa Vale Verde}
+  \label{tab:swot}
+  \fontsize{10}{12}\selectfont
+  \begin{tabular}{L{7.2cm}L{7.2cm}}
+    \toprule
+    \textbf{Forças} & \textbf{Fraquezas} \\
+    \midrule
+    Diversidade produtiva e vínculo com comunidades tradicionais; acesso a
+    compras públicas; reputação regional; associativismo consolidado &
+    Controles manuais; ausência de rastreabilidade; dependência de poucas
+    pessoas na administração; baixa maturidade digital da base \\
+    \midrule
+    \textbf{Oportunidades} & \textbf{Ameaças} \\
+    \midrule
+    Digitalização de compras públicas; demanda por produtos com origem
+    comprovada; programas de crédito para agricultura familiar; expansão do
+    canal varejista & Concorrência de distribuidores com logística estruturada;
+    exigências sanitárias crescentes; variação de preços; exclusão digital de
+    parte dos produtores \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{2pt}
+  {\fontsize{10}{12}\selectfont\itshape Fonte: elaborado pelo autor (2026)}
+\end{table}
+

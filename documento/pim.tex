@@ -1,0 +1,99 @@
+% ============================================================================
+% AgroConecta — PIM IV
+% Compilar com: pdflatex -interaction=nonstopmode pim.tex (duas vezes)
+% ============================================================================
+\documentclass[12pt,a4paper]{article}
+
+\input{estilo/abnt}
+
+\begin{document}
+
+\input{pre-textual}
+
+% ============================================================== INTRODUÇÃO ===
+\newpage
+\pagestyle{abnt}
+\section*{INTRODUÇÃO}
+\addcontentsline{toc}{section}{INTRODUÇÃO}
+
+A transformação digital deixou de ser um diferencial competitivo para se tornar
+condição de sobrevivência em cadeias produtivas intensivas em informação. No
+agronegócio, esse movimento é particularmente sensível porque envolve agentes com
+níveis muito distintos de maturidade tecnológica: de um lado, compradores
+institucionais, distribuidores e cooperativas que operam sistemas integrados de
+gestão; de outro, agricultores familiares que, muitas vezes, registram a produção
+em cadernos e negociam preços por telefone. A assimetria entre esses dois mundos
+gera perdas de produção, dificulta a rastreabilidade sanitária e reduz a renda de
+quem está na base da cadeia.
+
+A agricultura familiar responde por parcela expressiva dos estabelecimentos
+rurais brasileiros e por parte relevante da produção de alimentos que chega à
+mesa da população (IBGE, 2019). Apesar dessa importância, o segmento enfrenta
+dificuldades estruturais de acesso a mercados, crédito, assistência técnica e
+informação de preços. Programas de compras públicas, como o Programa Nacional de
+Alimentação Escolar (PNAE) e o Programa de Aquisição de Alimentos (PAA),
+ampliaram o espaço institucional para esses produtores, mas criaram também novas
+exigências operacionais: emissão de documentos, comprovação de entrega,
+rastreabilidade de lotes e prestação de contas. Sem ferramentas adequadas, tais
+exigências acabam funcionando como barreiras adicionais.
+
+Este trabalho parte de uma organização fictícia, a \textbf{Cooperativa
+Agropecuária Vale Verde}, sediada na região de Campinas (SP), que reúne
+produtores familiares de diferentes comunidades -- tradicionais, quilombolas,
+assentados e indígenas -- e comercializa hortifrúti, grãos e produtos
+beneficiados para escolas, restaurantes universitários e redes varejistas. A
+cooperativa cresceu sem que seus controles evoluíssem na mesma proporção: os
+pedidos chegam por canais variados, a programação de rotas é feita em planilhas
+e a comprovação de entrega depende de fotografias enviadas por aplicativo de
+mensagens, sem vínculo com o pedido ou com a nota fiscal.
+
+Diante desse cenário, o objetivo geral deste Projeto Integrado Multidisciplinar
+é desenvolver uma solução tecnológica corporativa integrada que apoie a
+transformação digital da cooperativa, cobrindo desde o planejamento do negócio e
+o desenvolvimento das aplicações Web e mobile até a modelagem do banco de dados,
+a definição da infraestrutura em nuvem e o gerenciamento ágil do projeto. Os
+objetivos específicos são: caracterizar a organização e seus processos;
+estruturar a proposta de valor e a viabilidade da solução; incorporar práticas de
+inclusão digital, acessibilidade e proteção de dados; implementar uma aplicação
+Web administrativa e uma API REST segura; desenvolver um aplicativo mobile com
+operação offline para produtores e motoristas; projetar o banco de dados
+relacional com procedimentos armazenados e gatilhos; planejar a implantação em
+nuvem com pipeline de integração e entrega contínuas; e organizar o trabalho com
+Product Backlog, Sprint Backlog e quadro Kanban.
+
+A metodologia adotada caracteriza-se como pesquisa aplicada de abordagem
+qualitativa, com objetivo exploratório e descritivo. O procedimento técnico
+combinou levantamento documental sobre o domínio agroalimentar, modelagem de
+negócio e desenvolvimento incremental de software. O ciclo de vida seguiu
+práticas ágeis: requisitos priorizados em Product Backlog, entregas em quatro
+sprints de duas semanas, revisões ao final de cada incremento e uso de quadro
+Kanban para visualizar o fluxo de trabalho. A engenharia utilizou arquitetura em
+camadas (domínio, aplicação, infraestrutura e apresentação), contrato OpenAPI
+como fonte de verdade para o consumo das APIs e automação de testes em todos os
+níveis. O projeto foi conduzido em duas frentes paralelas -- núcleo
+corporativo/Web e aplicativo mobile -- integradas continuamente à linha principal
+do repositório.
+
+Quanto à estrutura, além desta introdução, o trabalho apresenta nove capítulos
+que correspondem às etapas solicitadas no manual do PIM IV. O primeiro
+caracteriza a organização; o segundo detalha o planejamento da solução
+tecnológica; o terceiro trata de responsabilidade social, diversidade e
+acessibilidade; o quarto descreve a solução Web; o quinto apresenta o aplicativo
+mobile; o sexto discute a arquitetura de software; o sétimo detalha o projeto do
+banco de dados; o oitavo aborda infraestrutura em nuvem e DevOps; e o nono
+descreve o gerenciamento ágil do projeto. Em seguida, apresentam-se a conclusão e
+as referências utilizadas.
+
+\input{capitulos/01-caracterizacao}
+\input{capitulos/02-planejamento}
+\input{capitulos/03-social}
+\input{capitulos/04-web}
+\input{capitulos/05-mobile}
+\input{capitulos/06-arquitetura}
+\input{capitulos/07-banco}
+\input{capitulos/08-devops}
+\input{capitulos/09-agil}
+\input{capitulos/10-conclusao}
+\input{capitulos/11-referencias}
+
+\end{document}

@@ -1,0 +1,141 @@
+% ============================================================================
+% Capítulo 6 — Arquitetura de software
+% ============================================================================
+\section{ARQUITETURA DE SOFTWARE}
+
+\subsection{Estilo arquitetural}
+
+A solução adota o estilo de \textbf{monólito modular em camadas}, com separação
+rígida de dependências: o domínio não conhece infraestrutura, a aplicação
+depende apenas do domínio e a infraestrutura implementa as abstrações definidas
+nas camadas internas. Essa organização segue os princípios de inversão de
+dependência e permite substituir detalhes tecnológicos -- banco, armazenamento de
+arquivos, provedor de tokens -- sem alterar as regras de negócio (MARTIN, 2017;
+EVANS, 2003).
+
+A escolha por um monólito modular, em vez de microsserviços, é deliberada. O
+volume de operações da cooperativa não justifica a complexidade operacional de
+serviços distribuídos, e a equipe reduzida teria dificuldade de sustentar
+múltiplas implantações. O monólito modular preserva a possibilidade de extração
+futura de módulos, caso o crescimento o exija, sem pagar antecipadamente o custo
+de coordenação distribuída.
+
+\begin{figure}[H]
+  \centering
+  \caption{Arquitetura em camadas da solução}
+  \label{fig:camadas}
+  \begin{tikzpicture}[
+    camada/.style={draw, rounded corners=3pt, minimum width=130mm, minimum height=13mm,
+      align=center, font=\fontsize{9.5}{11}\selectfont},
+    seta/.style={-latex, thick, gray!70}
+  ]
+    \node[camada, fill=blue!8] (apres) {\textbf{Apresentação} --- MVC, Web API, Swagger, views Razor};
+    \node[camada, fill=green!8, below=3mm of apres] (aplic) {\textbf{Aplicação} --- casos de uso, validações, DTOs, autorização};
+    \node[camada, fill=orange!10, below=3mm of aplic] (dom) {\textbf{Domínio} --- entidades, enums, invariantes, contratos de repositório};
+    \node[camada, fill=gray!10, below=3mm of dom] (infra) {\textbf{Infraestrutura} --- EF Core, SQL Server, JWT, arquivos, seed};
+    \draw[seta] (apres) -- (aplic);
+    \draw[seta] (aplic) -- (dom);
+    \draw[seta] (infra.east) to[bend left=45] (dom.east);
+    \draw[seta] (aplic.west) to[bend right=40] node[left, font=\fontsize{8}{9}\selectfont, align=center] {inversão de\\ dependência} (infra.west);
+  \end{tikzpicture}
+  \fonte{elaborado pelo autor (2026)}
+\end{figure}
+
+\subsection{Camadas e responsabilidades}
+
+A Tabela~\ref{tab:camadas} detalha o papel de cada projeto da solução e os
+artefatos que concentra.
+
+\begin{table}[H]
+  \centering
+  \caption{Camadas, projetos e responsabilidades}
+  \label{tab:camadas}
+  \fontsize{9.5}{11.5}\selectfont
+  \begin{tabular}{L{2.4cm}L{4.5cm}L{7.9cm}}
+    \toprule
+    \textbf{Camada} & \textbf{Projeto} & \textbf{Responsabilidade} \\
+    \midrule
+    Domínio & \texttt{AgroConecta.Domain} & Entidades, enums, invariantes,
+      contratos de repositório e unidade de trabalho \\
+    Aplicação & \texttt{AgroConecta.Application} & Casos de uso, comandos,
+      consultas, validações e regras de orquestração \\
+    Infraestrutura & \texttt{AgroConecta.Infrastructure} & Contexto EF Core,
+      mapeamentos, repositórios, migrations, seed e serviços técnicos \\
+    Apresentação & \texttt{AgroConecta.Web} & Controladores MVC, API REST,
+      views, filtros, middlewares e configuração \\
+    Testes & \texttt{AgroConecta.Tests} & Testes unitários, de integração e de
+      API \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{2pt}
+  {\fontsize{10}{12}\selectfont\itshape Fonte: elaborado pelo autor (2026)}
+\end{table}
+
+\subsection{Orientação a objetos e princípios SOLID}
+
+O modelo de domínio utiliza classes com estado protegido e comportamento
+explícito. Todas as entidades herdam de \texttt{EntidadeBase}, que concentra
+identificador, datas de criação e atualização e a comparação por identidade --
+evitando duplicação e garantindo consistência transversal. As transições de
+estado são implementadas como métodos, e não como atribuições diretas: uma
+entrega só pode ser marcada como concluída se estiver em rota, e um pedido só
+pode ser cancelado enquanto não houver fatura emitida. Essa abordagem mantém as
+invariantes próximas dos dados que protegem.
+
+Os princípios SOLID estão presentes de forma concreta: a
+\textbf{responsabilidade única} separa entidade, caso de uso e repositório; o
+\textbf{aberto/fechado} permitiu incluir rotas e faturamento sem alterar
+entidades existentes; a \textbf{segregação de interfaces} mantém um contrato por
+agregado; e a \textbf{inversão de dependência} sustenta a arquitetura, com a
+aplicação declarando o que precisa e a infraestrutura fornecendo a
+implementação.
+
+\subsection{Padrões aplicados}
+
+A Tabela~\ref{tab:padroes} resume os padrões utilizados e sua justificativa no
+contexto do projeto.
+
+\begin{table}[H]
+  \centering
+  \caption{Padrões de projeto aplicados}
+  \label{tab:padroes}
+  \fontsize{9.5}{11.5}\selectfont
+  \begin{tabular}{L{3.4cm}L{5.8cm}L{5.8cm}}
+    \toprule
+    \textbf{Padrão} & \textbf{Aplicação} & \textbf{Benefício} \\
+    \midrule
+    Repository & Interfaces no domínio, implementação com EF Core &
+      Isola a persistência e facilita testes com dublês \\
+    Unit of Work & \texttt{IUnidadeDeTrabalho} com transação única por caso de
+      uso & Consistência entre agregados \\
+    Caso de uso & Uma classe por operação (\texttt{CriarPedido},
+      \texttt{GerarFatura}) & Regras explícitas e testáveis \\
+    DTO & Contratos de entrada e saída separados das entidades & Evita
+      exposição do modelo interno \\
+    Result & Retorno explícito de sucesso ou falha de negócio & Erros
+      previsíveis sem exceções de controle de fluxo \\
+    Problem Details & Respostas de erro padronizadas (RFC 7807) & Integração
+      simples para o cliente mobile \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{2pt}
+  {\fontsize{10}{12}\selectfont\itshape Fonte: elaborado pelo autor (2026)}
+\end{table}
+
+\subsection{Modularização e dependências}
+
+A solução é organizada em uma solução única com seis projetos, cujas referências
+apontam sempre para dentro: \texttt{Web} depende de \texttt{Application} e
+\texttt{Infrastructure}; \texttt{Infrastructure} depende de
+\texttt{Application} e \texttt{Domain}; \texttt{Application} depende apenas de
+\texttt{Domain}; e \texttt{Domain} não depende de nenhum outro projeto. Os
+testes referenciam todas as camadas, mas não são referenciados por nenhuma.
+
+Essa disciplina produz dois efeitos práticos. Primeiro, impede que detalhes de
+banco contaminem as regras de negócio. Segundo, torna o domínio e a aplicação
+plenamente testáveis sem servidor ou banco, o que explica a cobertura de 92,5\%
+e 93,8\% nessas camadas, respectivamente, com 159 testes automatizados. A
+verificação de arquitetura é feita pelo compilador: qualquer referência
+indevida quebra o build, e não apenas uma convenção de equipe.

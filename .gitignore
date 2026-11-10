@@ -46,3 +46,9 @@ appsettings.Development.json
 # Ferramentas
 .idea/
 *.iml
+
+# LaTeX (documento)
+documento/*.aux
+documento/*.log
+documento/*.out
+documento/*.toc

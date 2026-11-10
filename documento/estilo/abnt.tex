@@ -1,0 +1,192 @@
+% ============================================================================
+% Estilo ABNT para o PIM IV — AgroConecta
+% Baseado nas regras do manual do PIM (docs/manual.md) e na NBR 14724:2011.
+% ============================================================================
+
+% ---------------------------------------------------------------- página ----
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+
+% ------------------------------------------------------------------ fontes ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ------------------------------------------------------------- espaçamento ---
+\usepackage{setspace}
+\onehalfspacing
+\setlength{\parindent}{1.5cm}
+\usepackage{indentfirst}
+\setlength{\emergencystretch}{1.5em}
+
+% --------------------------------------------------------------- títulos -----
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\bfseries\fontsize{12}{18}\selectfont}
+  {\thesection}{0.8em}{}
+\titlespacing*{\section}{0pt}{1.1\baselineskip}{0.7\baselineskip}
+
+\titleformat{\subsection}
+  {\normalfont\bfseries\fontsize{12}{18}\selectfont}
+  {\thesubsection}{0.8em}{}
+\titlespacing*{\subsection}{0pt}{0.9\baselineskip}{0.4\baselineskip}
+
+\titleformat{\subsubsection}
+  {\normalfont\itshape\fontsize{12}{18}\selectfont}
+  {\thesubsubsection}{0.8em}{}
+\titlespacing*{\subsubsection}{0pt}{0.8\baselineskip}{0.3\baselineskip}
+
+% --------------------------------------------------------------- sumário -----
+\usepackage{tocloft}
+\addto\captionsportuguese{\renewcommand{\contentsname}{SUMÁRIO}}
+\renewcommand{\cfttoctitlefont}{\hfill\bfseries\fontsize{12}{18}\selectfont}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont\bfseries}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{0pt}
+\setlength{\cftsubsubsecindent}{0pt}
+\setlength{\cftbeforesecskip}{0.4\baselineskip}
+
+% ---------------------------------------------------------------- figuras ----
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{needspace}
+\usepackage{caption}
+\captionsetup{
+  position=above,
+  labelfont=bf,
+  labelsep=endash,
+  justification=centering,
+  singlelinecheck=false,
+  font=small,
+  skip=6pt
+}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabela}
+
+% Fonte de figura/tabela, em 10 pt, logo abaixo do elemento.
+\newcommand{\fonte}[1]{%
+  \par\vspace{2pt}%
+  {\fontsize{10}{12}\selectfont\itshape Fonte: #1\par}%
+}
+
+% Atalho: figura com legenda e fonte.
+% #1 arquivo, #2 legenda, #3 fonte
+\newcommand{\figura}[3]{%
+  \begin{figure}[H]
+    \centering
+    \caption{#2}
+    \includegraphics[width=0.92\textwidth]{#1}
+    \fonte{#3}
+  \end{figure}
+}
+
+% Atalho para tabela simples (uma coluna de texto corrida).
+% ------------------------------------------------------------- citações ------
+% Citação longa: 4 cm da margem esquerda, corpo 10, espaço simples.
+\newenvironment{citacao}
+  {\begin{spacing}{1}\begin{list}{}{%
+     \setlength{\leftmargin}{4cm}\setlength{\rightmargin}{0pt}%
+     \setlength{\listparindent}{0pt}\setlength{\itemindent}{0pt}%
+     \setlength{\topsep}{0.5\baselineskip}\setlength{\parsep}{0pt}}%
+   \item[]\fontsize{10}{12}\selectfont}
+  {\end{list}\end{spacing}}
+
+% ------------------------------------------------------------- listas --------
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.5cm,topsep=0.3\baselineskip,itemsep=0.15\baselineskip}
+\setlist[enumerate]{leftmargin=1.5cm,topsep=0.3\baselineskip,itemsep=0.15\baselineskip}
+
+% --------------------------------------------------------------- diagramas ---
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, calc, fit, backgrounds}
+
+% --------------------------------------------------------------- tabelas -----
+\usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{longtable}
+\usepackage{multirow}
+\setlength{\tabcolsep}{4pt}
+
+% --------------------------------------------------------------- código ------
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinestyle{abnt}{
+  basicstyle=\ttfamily\fontsize{8}{9.5}\selectfont,
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=none,
+  aboveskip=1.2\baselineskip,
+  belowskip=0.8\baselineskip,
+  extendedchars=true,
+  inputencoding=utf8,
+  literate=
+    {á}{{\'a}}1 {à}{{\`a}}1 {â}{{\^a}}1 {ã}{{\~a}}1 {ä}{{\"a}}1
+    {Á}{{\'A}}1 {À}{{\`A}}1 {Â}{{\^A}}1 {Ã}{{\~A}}1
+    {é}{{\'e}}1 {ê}{{\^e}}1 {É}{{\'E}}1 {Ê}{{\^E}}1
+    {í}{{\'i}}1 {î}{{\^i}}1 {Í}{{\'I}}1
+    {ó}{{\'o}}1 {ô}{{\^o}}1 {õ}{{\~o}}1 {Ó}{{\'O}}1 {Ô}{{\^O}}1 {Õ}{{\~O}}1
+    {ú}{{\'u}}1 {ü}{{\"u}}1 {Ú}{{\'U}}1 {Ü}{{\"U}}1
+    {ç}{{\c c}}1 {Ç}{{\c C}}1
+    {“}{{"}}1 {”}{{"}}1 {‘}{{`}}1 {’}{{'}}1
+    {–}{{--}}1 {—}{{---}}1
+}
+\lstset{style=abnt}
+
+% --------------------------------------------------------------- cabeçalho ---
+\usepackage{fancyhdr}
+\fancypagestyle{abnt}{%
+  \fancyhf{}%
+  \fancyhead[R]{\fontsize{10}{12}\selectfont\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+\fancypagestyle{vazio}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+
+% --------------------------------------------------------------- hyperlinks --
+\usepackage[hidelinks,unicode]{hyperref}
+\usepackage{xurl}
+\hypersetup{
+  pdftitle={AgroConecta: plataforma corporativa integrada para gestão da cadeia de suprimentos e inclusão digital na agricultura familiar},
+  pdfauthor={[NOME]},
+  pdfsubject={Projeto Integrado Multidisciplinar IV}
+}
+
+% ------------------------------------------------------- hifenização ---------
+\hyphenation{AgroConecta}
+
+% ------------------------------------------------------- comandos auxiliares --
+% Título de elemento pré-textual (centralizado, maiúsculo, negrito).
+\newcommand{\titulopretextual}[1]{%
+  \begin{center}
+    \bfseries\fontsize{12}{18}\selectfont #1
+  \end{center}
+  \vspace{0.5\baselineskip}
+}
+
+% Entrada de referência: sem recuo, espaço simples, separada por uma linha.
+\newcommand{\refbib}[1]{%
+  \par\begingroup
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{0pt}%
+  \noindent #1\par
+  \vspace{0.75\baselineskip}%
+  \endgroup
+}

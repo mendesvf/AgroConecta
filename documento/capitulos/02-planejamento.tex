@@ -1,0 +1,180 @@
+% ============================================================================
+% Capítulo 2 — Planejamento da solução tecnológica
+% ============================================================================
+\section{PLANEJAMENTO DA SOLUÇÃO TECNOLÓGICA}
+
+\subsection{Problema a ser resolvido}
+
+O problema central da Cooperativa Vale Verde não é a falta de produção, mas a
+falta de coordenação entre produção, demanda e comprovação. A cooperativa sabe
+o que seus associados plantam apenas quando alguém responde a uma mensagem; sabe
+o que foi entregue apenas quando o motorista retorna; e sabe quanto deve receber
+apenas quando o comprador envia a planilha de conferência. Cada uma dessas
+lacunas gera retrabalho, perda de margem e, sobretudo, perda de confiança.
+
+A solução proposta, denominada \textbf{AgroConecta}, é uma plataforma corporativa
+integrada que registra a cadeia de suprimentos em um único fluxo digital:
+cadastro do produtor e sua comunidade, produto, lote de colheita, pedido, rota de
+entrega, comprovação com foto e geolocalização, e fatura. O objetivo não é
+substituir o cooperativismo, mas dar suporte instrumental para que ele opere com
+informação confiável.
+
+\subsection{Objetivos da solução}
+
+O objetivo geral é disponibilizar uma plataforma Web e mobile que integre os
+processos de comercialização da agricultura familiar, com rastreabilidade,
+segurança e operação offline. Os objetivos específicos estão descritos a seguir.
+
+\begin{itemize}
+  \item Centralizar cadastros de cooperativas, produtores, produtos, lotes,
+    veículos e motoristas, com controle de acesso por papel.
+  \item Registrar pedidos com itens vinculados a lotes, calculando subtotais e
+    totais de forma consistente.
+  \item Programar rotas que gerem automaticamente as entregas dos pedidos
+    selecionados.
+  \item Permitir que o motorista atualize o status da entrega e anexe evidência
+    fotográfica com coordenadas, mesmo sem conexão.
+  \item Emitir faturas a partir dos pedidos, com numeração sequencial e
+    idempotência na geração.
+  \item Oferecer painéis, relatórios e indicadores para a gestão da cooperativa.
+  \item Garantir transparência, acessibilidade e conformidade com a LGPD.
+\end{itemize}
+
+\subsection{Público-alvo e personas}
+
+A plataforma atende quatro perfis, cujas necessidades orientaram as decisões de
+interface e de permissão. A Tabela~\ref{tab:personas} resume as personas
+construídas a partir do levantamento documental e da observação dos processos.
+
+\begin{table}[H]
+  \centering
+  \caption{Personas e necessidades}
+  \label{tab:personas}
+  \fontsize{10}{12}\selectfont
+  \begin{tabular}{L{2.6cm}L{6.4cm}L{5.4cm}}
+    \toprule
+    \textbf{Persona} & \textbf{Contexto} & \textbf{Necessidade principal} \\
+    \midrule
+    Maria, produtora (41) & Mora em comunidade quilombola, cultiva tomate e
+      feijão; usa celular Android com internet instável & Registrar a colheita
+      no momento da coleta, mesmo sem sinal, e acompanhar a venda \\
+    José, motorista (38) & Realiza três rotas por semana em veículo próprio da
+      cooperativa & Receber a lista de entregas do dia, atualizar o status e
+      comprovar a entrega com foto \\
+    Carla, compradora (34) & Nutricionista responsável por compras
+      institucionais & Consultar disponibilidade, acompanhar o pedido e obter
+      comprovação de entrega \\
+    Paulo, gestor (52) & Presidente da cooperativa, acumula funções
+      administrativas & Visualizar indicadores, aprovar cadastros e emitir
+      faturas com segurança \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{2pt}
+  {\fontsize{10}{12}\selectfont\itshape Fonte: elaborado pelo autor (2026)}
+\end{table}
+
+\subsection{Proposta de valor}
+
+A proposta de valor pode ser sintetizada na seguinte afirmação: \emph{para
+cooperativas de agricultura familiar que precisam comprovar origem e entrega,
+o AgroConecta é uma plataforma integrada que registra a cadeia produtiva em um
+único fluxo digital, com operação offline e evidências verificáveis, reduzindo
+perdas e ampliando o acesso a mercados institucionais}. Diferentemente de
+sistemas de gestão genéricos, a solução foi desenhada a partir das restrições
+reais do campo: conectividade intermitente, aparelhos modestos, usuários com
+baixa familiaridade tecnológica e exigência de comprovação documental.
+
+\subsection{Benefícios esperados e diferenciais}
+
+Os benefícios esperados organizam-se em quatro dimensões: \textbf{operacional}
+(menos retrabalho na conferência e na programação de rotas), \textbf{comercial}
+(maior capacidade de atender compras públicas com documentação consistente),
+\textbf{gerencial} (indicadores de vendas, perdas e logística) e \textbf{social}
+(inclusão digital de comunidades tradicionais, com interface acessível).
+
+Como diferenciais, destacam-se: operação offline real, com fila de sincronização
+persistente; evidência de entrega com foto, coordenadas e vínculo ao pedido;
+controle de acesso por papel, com escopo de dados por usuário; e contrato OpenAPI
+único, que mantém Web e mobile alinhados à mesma definição de serviço.
+
+\subsection{Viabilidade da solução}
+
+A viabilidade foi analisada sob três aspectos. Do ponto de vista
+\textbf{técnico}, a solução utiliza tecnologias maduras e gratuitas no
+desenvolvimento (.NET, React Native, SQL Server Developer), com implantação
+progressiva. Do ponto de vista \textbf{operacional}, o aplicativo mobile foi
+projetado para funcionar em aparelhos Android intermediários e para operar sem
+conexão, reduzindo a barreira de adoção. Do ponto de vista \textbf{econômico}, o
+custo de infraestrutura em nuvem é compatível com o porte da cooperativa,
+conforme estimativa da Tabela~\ref{tab:custos}.
+
+\begin{table}[H]
+  \centering
+  \caption{Estimativa mensal de infraestrutura em nuvem}
+  \label{tab:custos}
+  \fontsize{10}{12}\selectfont
+  \begin{tabular}{L{4.6cm}L{3.6cm}L{2.6cm}L{3.6cm}}
+    \toprule
+    \textbf{Componente} & \textbf{Serviço} & \textbf{Estimativa} & \textbf{Observação} \\
+    \midrule
+    Aplicação Web/API & Azure App Service B1 & R\$ 70--90 & 1 instância, autoescala
+      opcional \\
+    Banco de dados & Azure SQL Basic & R\$ 25--40 & backup automático \\
+    Evidências & Blob Storage & R\$ 5--10 & fotos comprimidas \\
+    Segredos & Key Vault & R\$ 3--5 & poucas operações \\
+    Observabilidade & Application Insights & R\$ 15--30 & amostragem ajustável \\
+    \midrule
+    \textbf{Total} & & \textbf{R\$ 120--175} & valores de referência (2026) \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{2pt}
+  {\fontsize{10}{12}\selectfont\itshape Fonte: elaborado pelo autor (2026), com
+  base em preços públicos de referência}
+\end{table}
+
+Uma única venda institucional adicional por mês tende a superar o custo mensal
+da infraestrutura, o que caracteriza a viabilidade econômica do projeto.
+
+\subsection{Modelo de negócio}
+
+A Tabela~\ref{tab:canvas} apresenta o Lean Canvas da solução, adaptado para o
+contexto de uma cooperativa sem fins lucrativos que busca sustentabilidade
+operacional.
+
+\begin{table}[H]
+  \centering
+  \caption{Lean Canvas do AgroConecta}
+  \label{tab:canvas}
+  \fontsize{9}{11}\selectfont
+  \begin{tabular}{L{7.2cm}L{7.2cm}}
+    \toprule
+    \textbf{Problema} & \textbf{Segmentos de clientes} \\
+    Controles manuais, rastreabilidade frágil, perda de produção, baixa
+    visibilidade gerencial & Cooperativas de agricultura familiar; produtores
+    associados; compradores institucionais \\
+    \midrule
+    \textbf{Solução} & \textbf{Proposta de valor única} \\
+    Plataforma Web + mobile com fluxo produtor--pedido--rota--entrega--fatura e
+    operação offline & Rastreabilidade e comprovação de entrega em um único
+    fluxo, com inclusão digital \\
+    \midrule
+    \textbf{Canais} & \textbf{Fontes de receita} \\
+    Aplicativo Android, navegador Web, suporte presencial da cooperativa &
+    Contribuição dos associados por volume comercializado; economia em perdas \\
+    \midrule
+    \textbf{Estrutura de custos} & \textbf{Métricas-chave} \\
+    Infraestrutura em nuvem, suporte e capacitação & Pedidos por safra, perdas
+    por lote, prazo de entrega, produtores ativos \\
+    \midrule
+    \textbf{Vantagem injusta} & \\
+    Conhecimento do território, relação de confiança com as comunidades e
+    desenho específico para conectividade intermitente & \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{2pt}
+  {\fontsize{9}{11}\selectfont\itshape Fonte: elaborado pelo autor (2026),
+  adaptado de Osterwalder e Pigneur (2010)}
+\end{table}
