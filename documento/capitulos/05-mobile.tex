@@ -124,8 +124,8 @@ o ciclo.
     \node[nodo] (envio) at (10.3,0) {Envio à API};
     \node[nodo] (ok)    at (14.4,0) {Sincronizado};
 
-    \node[nodo] (erro)     at (5.9,-3.1) {Falha temporária\\(recuo exponencial)};
-    \node[nodo] (conflito) at (10.3,-3.1) {Conflito 409\\(visível ao usuário)};
+    \node[nodo, text width=27mm] (erro)     at (5.9,-3.1) {Falha temporária\\(recuo exponencial)};
+    \node[nodo, text width=27mm] (conflito) at (10.3,-3.1) {Conflito 409\\(visível ao usuário)};
 
     \draw[seta] (local) -- node[rotulo, above] {enfileira} (fila);
     \draw[seta] (fila) -- node[rotulo, above] {reconexão} (envio);
