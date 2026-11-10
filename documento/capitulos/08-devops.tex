@@ -34,7 +34,8 @@ falhas, tanto no backend quanto no aplicativo mobile.
 
 \subsection{Arquitetura de implantação em nuvem}
 
-O plano de implantação utiliza serviços gerenciados do Microsoft Azure,
+O plano de implantação utiliza serviços gerenciados do Microsoft Azure
+\mbox{(MICROSOFT, 2026b)},
 representados na Figura~\ref{fig:azure}. A aplicação é publicada no Azure App
 Service para Linux (.NET 10) ou no Azure Container Apps; o banco migra para o
 Azure SQL Database; as evidências fotográficas passam ao Blob Storage; e os
@@ -85,7 +86,8 @@ sem estado -- cookie na Web e token na API --, não há necessidade de afinidade
 de sessão; o armazenamento de evidências fora do disco local, já previsto,
 completa esse desenho.
 
-Na segurança, destacam-se: HTTPS obrigatório com HSTS em produção, Swagger
+Na segurança, seguindo as recomendações do OWASP Top 10 (OWASP FOUNDATION,
+2021), destacam-se: HTTPS obrigatório com HSTS em produção, Swagger
 desabilitado fora do desenvolvimento, segredos fora do repositório, firewall do
 banco restrito ao serviço de aplicação e backup automático do Azure SQL. O
 checklist de produção reúne esses itens e deve ser verificado antes de cada
