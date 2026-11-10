@@ -52,3 +52,5 @@ documento/*.aux
 documento/*.log
 documento/*.out
 documento/*.toc
+documento/pre-textual.tex
+documento/pim.pdf
